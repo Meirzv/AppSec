@@ -6,6 +6,8 @@ compiler:
   - clang
   - gcc
 
+script: make && make test
+
   matrix:
   include:
     - os: osx
