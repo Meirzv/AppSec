@@ -1,6 +1,5 @@
 language: c
 sudo: false # only for faster builds
 script:
-  - clang -coverage -O0 dictionary.c -o dict
-  - ./dict
-  - gcov dictionary.c
+  - clang dictionary.c -o maor
+  - ./maor
