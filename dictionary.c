@@ -34,3 +34,15 @@ int hash_function(const char *word)
     int bucket = sum % HASH_SIZE;
     return bucket;
 }
+
+static int t = 1;
+
+int main()
+{
+    if (t)
+        printf("on this line\n");
+    else
+        printf("but not here\n");
+
+    return 0;
+}
