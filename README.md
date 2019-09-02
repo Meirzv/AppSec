@@ -1,2 +1,2 @@
 # AppSec
-Application Security Assignments - Assignment 1
+Application Security Assignments
