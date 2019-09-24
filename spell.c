@@ -19,7 +19,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
     char c, word[LENGTH+1];
     int length_word = 0; //length for word reading from file
     int ascii_char = 0;
-    bool first = false;
     
     
     while ((c = fgetc(fp)) != EOF)
@@ -28,11 +27,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
         {
             if (flag_bof == true){
                 flag_bof = false;
-//                length_word = 0;
-//                for (int i = 0; i<=LENGTH; i++){
-//                    word[i] = '\0';
-//                }
-//                continue;
             }
             ascii_char = (int)word[length_word-1];
             if (((ascii_char > 64) && (ascii_char < 91)) || ((ascii_char > 96) && (ascii_char < 123))) { //Checking ASCII punctuation
@@ -49,7 +43,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-                    first = false;
                     strcat(misspelled[num_misspelled], word);
                     num_misspelled++;
                 }
@@ -97,7 +90,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
             if (misspelled[num_misspelled] == NULL){
                 exit(0);
             }
-            first = false;
             strcat(misspelled[num_misspelled], word);
             num_misspelled++;
 
@@ -124,7 +116,7 @@ bool check_word(const char *word, hashmap_t hashtable[]){
     }
     /* ***********************************************************************************/
     /**************************************** checking is word misspelled for lower case****************************************/
-    if (result == false) { //didn't match regular case in the first time
+    if (result == false) { //didn't match regular case in the time
         size_t word_length =  strlen(word);
         char lower_case_word[word_length];
         strcpy(lower_case_word, word);
@@ -222,20 +214,20 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
 
 
 
-//int main(){
-//    bool check;
-//    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
-//    hashmap_t hashtable[HASH_SIZE];
-//    check = load_dictionary(file_path, hashtable);
-//
-//
-//    FILE *fp_test;
-//    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
-//    char *misspelled[MAXCHAR];
-//    //misspelled[0] = malloc(1 * sizeof(char));
-//    int num_misspelled = check_words(fp_test, hashtable, misspelled);
-//    printf("Number of misspeled word are %d", num_misspelled);
-//    printf("\n %s",misspelled[0]);
-//
-//    return 0;
-//}
+int main(){
+    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
+    bool check = false;
+    hashmap_t hashtable[HASH_SIZE];
+    check = load_dictionary(file_path, hashtable);
+
+
+    FILE *fp_test;
+    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
+    char *misspelled[MAXCHAR];
+    //misspelled[0] = malloc(1 * sizeof(char));
+    int num_misspelled = check_words(fp_test, hashtable, misspelled);
+    printf("Number of misspeled word are %d", num_misspelled);
+    printf("\n %s",misspelled[0]);
+
+    return 0;
+}
