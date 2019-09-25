@@ -39,11 +39,14 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
             
             if (length_word > 0){ // if a word is bigger than at least 0 chars -> check word
                 if (check_word(word, hashtable) == false){ //found  misspelled word.
-                    misspelled[num_misspelled] = malloc(sizeof(char) * length_word);
+                    misspelled[num_misspelled] = malloc(sizeof(char*) * length_word);
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-                    strcat(misspelled[num_misspelled], word);
+                    //strcat(misspelled[num_misspelled], word);
+		    for (int t = 0; t < length_word; t++){
+                        misspelled[num_misspelled][t] = word[t];
+			}
                     num_misspelled++;
                 }
             }
@@ -86,11 +89,14 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
     
     if (length_word > 0){ // if a word is bigger than at least 0 chars -> check word
         if (check_word(word, hashtable) == false){ //found  misspelled word.
-            misspelled[num_misspelled] = malloc(sizeof(char) * length_word);
+            misspelled[num_misspelled] = malloc(sizeof(char*) * length_word);
             if (misspelled[num_misspelled] == NULL){
                 exit(0);
             }
-            strcat(misspelled[num_misspelled], word);
+            //strcat(misspelled[num_misspelled], word);
+            for (int t = 0; t < length_word; t++){
+                misspelled[num_misspelled][t] = word[t];
+	}
             num_misspelled++;
 
         }
