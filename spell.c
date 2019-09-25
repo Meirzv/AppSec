@@ -214,20 +214,20 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
 
 
 
-int main(){
-    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
-    bool check = false;
-    hashmap_t hashtable[HASH_SIZE];
-    check = load_dictionary(file_path, hashtable);
+//int main(){
+//    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
+//    bool check = false;
+//    hashmap_t hashtable[HASH_SIZE];
+//    check = load_dictionary(file_path, hashtable);
 
 
-    FILE *fp_test;
-    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
-    char *misspelled[MAXCHAR];
+//    FILE *fp_test;
+//    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
+//    char *misspelled[MAXCHAR];
     //misspelled[0] = malloc(1 * sizeof(char));
-    int num_misspelled = check_words(fp_test, hashtable, misspelled);
-    printf("Number of misspeled word are %d", num_misspelled);
-    printf("\n %s",misspelled[0]);
+//    int num_misspelled = check_words(fp_test, hashtable, misspelled);
+//    printf("Number of misspeled word are %d", num_misspelled);
+//    printf("\n %s",misspelled[0]);
 
-    return 0;
-}
+//    return 0;
+//}
