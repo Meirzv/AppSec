@@ -39,11 +39,13 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
             
             if (length_word > 0){ // if a word is bigger than at least 0 chars -> check word
                 if (check_word(word, hashtable) == false){ //found  misspelled word.
-                    misspelled[num_misspelled] = malloc(sizeof(char) * length_word);
+                    misspelled[num_misspelled] = malloc(sizeof(char*) * length_word);
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-                    strcat(misspelled[num_misspelled], word);
+		    for (int t = 0; t < length_word; t++){
+                        misspelled[num_misspelled][t] = word[t];
+			}
                     num_misspelled++;
                 }
             }
@@ -86,16 +88,19 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
     
     if (length_word > 0){ // if a word is bigger than at least 0 chars -> check word
         if (check_word(word, hashtable) == false){ //found  misspelled word.
-            misspelled[num_misspelled] = malloc(sizeof(char) * length_word);
+            misspelled[num_misspelled] = malloc(sizeof(char*) * length_word);
             if (misspelled[num_misspelled] == NULL){
                 exit(0);
             }
-            strcat(misspelled[num_misspelled], word);
+            //strcat(misspelled[num_misspelled], word);
+            for (int t = 0; t < length_word; t++){
+                misspelled[num_misspelled][t] = word[t];
+	}
             num_misspelled++;
 
         }
     }
-    
+    fclose(fp);
     return num_misspelled;
 }
 
@@ -141,8 +146,8 @@ bool check_word(const char *word, hashmap_t hashtable[]){
 void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtable[]){
     node *curr = hashtable[bucket];
     if ( curr == NULL){
-        node *new_node;
-        new_node = (node *) malloc(sizeof(node));
+        node* new_node = (node*)malloc(sizeof(node));
+        //*new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
@@ -153,8 +158,8 @@ void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtabl
 
     }
     else{
-        node *new_node;
-        new_node = (node *) malloc(sizeof(node));
+        node* new_node = (node*)malloc(sizeof(node));
+       // *new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
@@ -214,20 +219,20 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
 
 
 
-int main(){
-    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
-    bool check = false;
-    hashmap_t hashtable[HASH_SIZE];
-    check = load_dictionary(file_path, hashtable);
+//int main(){
+//    char * file_path = "/Users/maorzeevi/Documents/GitHub/AppSec/wordlist.txt";
+//    bool check = false;
+//    hashmap_t hashtable[HASH_SIZE];
+//    check = load_dictionary(file_path, hashtable);
 
 
-    FILE *fp_test;
-    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
-    char *misspelled[MAXCHAR];
+//    FILE *fp_test;
+//    fp_test = fopen("/Users/maorzeevi/Documents/GitHub/AppSec/test.txt", "r");
+//    char *misspelled[MAXCHAR];
     //misspelled[0] = malloc(1 * sizeof(char));
-    int num_misspelled = check_words(fp_test, hashtable, misspelled);
-    printf("Number of misspeled word are %d", num_misspelled);
-    printf("\n %s",misspelled[0]);
+//    int num_misspelled = check_words(fp_test, hashtable, misspelled);
+//    printf("Number of misspeled word are %d", num_misspelled);
+//    printf("\n %s",misspelled[0]);
 
-    return 0;
-}
+//    return 0;
+//}
