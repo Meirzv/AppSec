@@ -43,7 +43,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-                    //strcat(misspelled[num_misspelled], word);
 		    for (int t = 0; t < length_word; t++){
                         misspelled[num_misspelled][t] = word[t];
 			}
@@ -101,7 +100,7 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
 
         }
     }
-    
+    fclose(fp);
     return num_misspelled;
 }
 
@@ -147,8 +146,8 @@ bool check_word(const char *word, hashmap_t hashtable[]){
 void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtable[]){
     node *curr = hashtable[bucket];
     if ( curr == NULL){
-        node *new_node;
-        new_node = (node *) malloc(sizeof(node));
+        node* new_node = (node*)malloc(sizeof(node));
+        //*new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
@@ -159,8 +158,8 @@ void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtabl
 
     }
     else{
-        node *new_node;
-        new_node = (node *) malloc(sizeof(node));
+        node* new_node = (node*)malloc(sizeof(node));
+       // *new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
