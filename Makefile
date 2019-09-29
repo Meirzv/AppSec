@@ -28,11 +28,23 @@ test2: dictionary.o spell.o test_main2.o
 	gcc -Wall -o test_main2 test_main2.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
 	./test_main2
 
+test3: dictionary.o spell.o test_main3.o
+	gcc -Wall -o test_main3 test_main3.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
+	./test_main3
+
+test4: dictionary.o spell.o test_main4.o
+	gcc -Wall -o test_main4 test_main4.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
+	./test_main4
+
+test5: dictionary.o spell.o test_main5.o
+	gcc -Wall -o test_main5 test_main5.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
+	./test_main5
+
 prog: dictionary.o spell.o main.o
 	gcc -Wall -o spell_check dictionary.o spell.o main.o
 
 clean:
-	rm dictionary.o spell.o main.o test_main.o test_main1.o test_main2.o spell_check
+	rm dictionary.o spell.o main.o test_main.o test_main1.o test_main2.o spell_check 
 
 cleanall:clean
 	rm spell_check
