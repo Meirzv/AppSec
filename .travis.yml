@@ -3,7 +3,7 @@ sudo: false # only for faster builds
 before_install:
   - sudo apt-get update
   - sudo apt-get install -y check
-
+compiler: gcc
 script:
   - make test
   - make test1
