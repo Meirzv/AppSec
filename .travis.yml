@@ -1,3 +1,4 @@
+os: linux
 language: c
 sudo: false # only for faster builds
 before_install:
@@ -5,6 +6,7 @@ before_install:
   - sudo apt-get install -y check
 compiler: gcc
 script:
+  - make
   - make test
   - make test1
   - make test2
