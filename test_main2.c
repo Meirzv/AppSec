@@ -17,9 +17,6 @@ START_TEST(test_check_word_normal)
     const char *punctuation_word = "Justi*ce";
     const char *punctuation_word2 = "Jus0tice";
     bool testt = check_word(correct_word , hashtable);
-    if (testt == true){
-        printf("\nAs expected\n");
-    }
     ck_assert_msg( !check_word(correct_word , hashtable) , "Cant find correct word %s", correct_word);
     ck_assert_msg( !check_word(correct_word1 , hashtable) , "Cant find correct word %s", correct_word1);
     ck_assert_msg( !check_word(correct_word2 , hashtable) , "Cant find correct word %s", correct_word2);
