@@ -12,8 +12,8 @@ int main (int argc, char *argv[]){
     FILE *fp_test;
 
     if(argc > 1){
-        file_path = argv[1];
-        fp_test = fopen(argv[2], "r");
+        file_path = argv[2];
+        fp_test = fopen(argv[1], "r");
     }
     else{
          fp_test = fopen("/Users/maorzeevi/Desktop/NYU/Classes/Application Security/Assignments/Assignment 1/test_wordlist.txt", "r");
