@@ -1,5 +1,6 @@
 language: c
 sudo: false # only for faster builds
 script:
-  - clang dictionary.c -o maor
-  - ./maor
+  - make test
+  - make test1
+  - make test2
