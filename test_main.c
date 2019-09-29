@@ -48,6 +48,7 @@ START_TEST(test_check_words_normal)
     int num_misspelled = check_words(fp, hashtable, misspelled);
     ck_assert(num_misspelled == 3);
     bool test = strlen(misspelled[0]) == strlen(expected[0]);
+    printf(" \n%s \n", misspelled[0]);
     int len1 = strlen(misspelled[0]);
     int len2 = strlen(expected[0]);
     ck_assert_msg(test, "%d!=%d", len1, len2);
