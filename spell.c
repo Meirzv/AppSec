@@ -43,7 +43,7 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-                    for (int t = 0; t < length_word; t++){
+                    for (int t = 0; t <= length_word; t++){
                                 misspelled[num_misspelled][t] = word[t];
                     }
                             num_misspelled++;
@@ -92,7 +92,7 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
             if (misspelled[num_misspelled] == NULL){
                 exit(0);
             }
-            for (int t = 0; t < length_word; t++){
+            for (int t = 0; t <= length_word; t++){
                 misspelled[num_misspelled][t] = word[t];
 	}
             num_misspelled++;
