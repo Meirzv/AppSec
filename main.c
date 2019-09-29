@@ -7,27 +7,35 @@
 
 #define MAXCHAR 1000
 
-int main(){
-    char * file_path = "/home/appsec/appsec/AppSec/wordlist.txt";
+int main (int argc, char *argv[]){
+    char * file_path = "/Users/maorzeevi/Desktop/NYU/Classes/Application Security/Assignments/Assignment 1/wordlist.txt";
+    FILE *fp_test;
+
+    if(argc > 1){
+        file_path = argv[1];
+        fp_test = fopen(argv[2], "r");
+    }
+    else{
+         fp_test = fopen("/Users/maorzeevi/Desktop/NYU/Classes/Application Security/Assignments/Assignment 1/test_wordlist.txt", "r");
+    }
+    printf("\n value of %d ", argc);
+    
     bool check = false;
     hashmap_t hashtable[HASH_SIZE];
     check = load_dictionary(file_path, hashtable);
 
 
-    FILE *fp_test;
-    fp_test = fopen("/home/appsec/appsec/AppSec/input.txt", "r");
     char *misspelled[MAXCHAR];
     int num_misspelled = check_words(fp_test, hashtable, misspelled);
- //   printf("Number of misspeled word are %d", num_misspelled);
- //   printf("\n %s",misspelled[0]);
     if (check){
-//	printf("Dictinory function good");
+        //pass
+        num_misspelled++;
+        num_misspelled--;
     }
 
     for (int miss = 0; miss < MAXCHAR ; miss++){
       free(misspelled[miss]);
     }
- //   free(*misspelled);
     for (int ll = 0; ll < 2000 ; ll++){
         node *new_node = hashtable[ll];
         while (new_node != NULL){
@@ -39,3 +47,4 @@ int main(){
 
     return 0;
 }
+
