@@ -20,19 +20,19 @@ START_TEST(test_check_words_normal)
 {
     hashmap_t hashtable[HASH_SIZE];
     load_dictionary(DICTIONARY, hashtable);
-    char *expected[3];
-    expected[0] = "Meir";
+    char *expected[2];
+    expected[0] = "Meir"; //Not expected
     expected[1] = "Zeevi";
     char *misspelled[MAX_MISSPELLED];
     FILE *fp = fopen("test2.txt", "r");
     int num_misspelled = check_words(fp, hashtable, misspelled);
     ck_assert(num_misspelled == 1);
-    bool test = strlen(misspelled[0]) == strlen(expected[0]);
+    bool test = strlen(misspelled[0]) == strlen(expected[1]);
     int len1 = strlen(misspelled[0]);
-    int len2 = strlen(expected[0]);
+    int len2 = strlen(expected[1]);
     ck_assert_msg(test, "%d!=%d", len1, len2);
     ck_assert_msg(!strcmp(misspelled[0], expected[0]) == 0 , "Word %s is exist", expected[0]);
-    ck_assert_msg(strcmp(misspelled[1], expected[1]) == 0 , "Expected %s", expected[0]);
+    ck_assert_msg(strcmp(misspelled[0], expected[1]) == 0 , "Expected %s", expected[0]);
 }
 END_TEST
 
