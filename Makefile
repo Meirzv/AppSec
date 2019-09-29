@@ -20,6 +20,14 @@ test: dictionary.o spell.o test_main.o
 	gcc -Wall -o test_main test_main.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
 	./test_main
 
+test1: dictionary.o spell.o test_main1.o
+	gcc -Wall -o test_main1 test_main1.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
+	./test_main1
+
+test2: dictionary.o spell.o test_main2.o
+	gcc -Wall -o test_main2 test_main2.o spell.o dictionary.o -lcheck -lm -lrt -lpthread -lsubunit
+	./test_main2
+
 prog: dictionary.o spell.o main.o
 	gcc -Wall -o spell_check dictionary.o spell.o main.o
 

@@ -43,10 +43,10 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
                     if (misspelled[num_misspelled] == NULL){
                         exit(0);
                     }
-		    for (int t = 0; t < length_word; t++){
-                        misspelled[num_misspelled][t] = word[t];
-			}
-                    num_misspelled++;
+                    for (int t = 0; t < length_word; t++){
+                                misspelled[num_misspelled][t] = word[t];
+                    }
+                            num_misspelled++;
                 }
             }
             length_word = 0; //new word
@@ -92,7 +92,6 @@ int check_words(FILE *fp, hashmap_t hashtable[], char *misspelled[]){
             if (misspelled[num_misspelled] == NULL){
                 exit(0);
             }
-            //strcat(misspelled[num_misspelled], word);
             for (int t = 0; t < length_word; t++){
                 misspelled[num_misspelled][t] = word[t];
 	}
@@ -147,7 +146,6 @@ void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtabl
     node *curr = hashtable[bucket];
     if ( curr == NULL){
         node* new_node = (node*)malloc(sizeof(node));
-        //*new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
@@ -159,7 +157,6 @@ void add_new_value_to_hash_array(int bucket,const char *word, hashmap_t hashtabl
     }
     else{
         node* new_node = (node*)malloc(sizeof(node));
-       // *new_node = (node *) malloc(sizeof(node));
         if (new_node == NULL){
             exit(0);
         }
@@ -180,11 +177,14 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
     char c, word[LENGTH+1];
     int length_word = 0; //length for word reading from file
     int count_words = 1; //number of words in the file
+    bool success = false;
+    bool endoffile = false; //If file is empty no need to read at the end
     int bucket = 0; //reminder of hash function, value 0-1999
     bool flag_bof = false;
     
     while ((c = fgetc(fp)) != EOF)
     {
+        endoffile = true;
         if (c == ' ' || c == '\n') //Space or new line means a begining of a new word
         {
             if (flag_bof == true){
@@ -195,6 +195,7 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
                 word[length_word] = '\0'; //End of char array
                 bucket = hash_function(word);
                 add_new_value_to_hash_array(bucket, word, hashtable);
+                success = true;
             }
             length_word = 0; //new word
         }
@@ -208,14 +209,14 @@ bool load_dictionary(const char *dictionary_file, hashmap_t hashtable[]){
             length_word++;   //next char in the word
         }
     }
-    count_words += 1;
-    word[length_word] = '\0'; //End of char array
-    length_word = 0; //new word
-    bucket = hash_function(word);
-    add_new_value_to_hash_array(bucket, word, hashtable);
+    if(endoffile == true){
+        count_words += 1;
+        word[length_word] = '\0'; //End of char array
+        success = true;
+        bucket = hash_function(word);
+        add_new_value_to_hash_array(bucket, word, hashtable);
+    }
     fclose(fp);
-    return false;
+    return success;
 }
-
-
 
