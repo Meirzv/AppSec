@@ -1,5 +1,9 @@
 language: c
 sudo: false # only for faster builds
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y check
+
 script:
   - make test
   - make test1
