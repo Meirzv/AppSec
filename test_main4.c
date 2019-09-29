@@ -2,28 +2,27 @@
 #include "dictionary.h"
 #include <stdlib.h>
 
-#define DICTIONARY "wordlist.txt"
 
-//This Unit testing tests punctuation at the beginning and the end of a valid word. Also it checks punctuation at the middle of the word.
-// It checks it directly from the function check words instead of input file.
+#define DICTIONARY "test4.txt"
 
-START_TEST(test_check_word_normal)
+// Unit testing to check numbers and money word ($25.4). It should not work because filtering punctuation happens in the word_checks functions
+/* test 4 file:
+Zeevi
+$25.4
+12345678
+65.65
+*/
+START_TEST(general_punc_test)
 {
     hashmap_t hashtable[HASH_SIZE];
     load_dictionary(DICTIONARY, hashtable);
-    const char *correct_word = ".Justice";
-    const char *correct_word1 = ".Justice.";
-    const char *correct_word2 = "Justice.";
-    const char *punctuation_word = "Justi*ce";
-    const char *punctuation_word2 = "Jus0tice";
-    ck_assert_msg( !check_word(correct_word , hashtable) , "Cant find correct word %s", correct_word);
-    ck_assert_msg( !check_word(correct_word1 , hashtable) , "Cant find correct word %s", correct_word1);
-    ck_assert_msg( !check_word(correct_word2 , hashtable) , "Cant find correct word %s", correct_word2);
-  //  ck_assert_msg( check_word(punctuation_word , hashtable) == false , "%s should return false" , punctuation_word);
-    ck_assert_msg( check_word(punctuation_word , hashtable) == false , "%s should return false" , punctuation_word); 
+
+    char *misspelled[MAX_MISSPELLED];
+    FILE *fp = fopen("test4.txt", "r");
+    int num_misspelled = check_words(fp, hashtable, misspelled);
+    ck_assert(num_misspelled == 0);
 }
 END_TEST
-
 
 Suite *
 check_word_suite(void)
@@ -32,7 +31,7 @@ check_word_suite(void)
     TCase *check_word_case;
     suite = suite_create("check_word");
     check_word_case = tcase_create("Core");
-    tcase_add_test(check_word_case, test_check_word_normal);
+    tcase_add_test(check_word_case, general_punc_test);
     suite_add_tcase(suite, check_word_case);
 
     return suite;
