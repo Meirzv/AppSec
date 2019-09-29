@@ -4,7 +4,8 @@
 
 #define DICTIONARY "wordlist.txt"
 
-//This Unit testing test punctuation at the beginning and the end of a valid word. Also it checks punctuation at the middle of the word.
+//This Unit testing tests punctuation at the beginning and the end of a valid word. Also it checks punctuation at the middle of the word.
+// It checks it directly from the function check words instead of input file.
 
 START_TEST(test_check_word_normal)
 {
