@@ -19,7 +19,7 @@ START_TEST(test_check_word_normal)
     ck_assert_msg( !check_word(correct_word , hashtable) , "Cant find correct word %s", correct_word);
     ck_assert_msg( !check_word(correct_word1 , hashtable) , "Cant find correct word %s", correct_word1);
     ck_assert_msg( !check_word(correct_word2 , hashtable) , "Cant find correct word %s", correct_word2);
-    ck_assert_msg( check_word(punctuation_word , hashtable) == false , "%s should return false" , punctuation_word);
+  //  ck_assert_msg( check_word(punctuation_word , hashtable) == false , "%s should return false" , punctuation_word);
     ck_assert_msg( check_word(punctuation_word , hashtable) == false , "%s should return false" , punctuation_word); 
 }
 END_TEST
